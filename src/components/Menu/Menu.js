@@ -13,7 +13,8 @@ import { BiWorld } from "react-icons/bi";
 import { useMediaQuery } from "react-responsive";
 
 function Menu({ isOpen, onRequestClose, onClick }) {
-  const isSmallScreen = useMediaQuery({ maxWidth: 768 });
+  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
+  const isMediumScreen = useMediaQuery({ minWidth: 641, maxWidth: 1023 });
 
   const modalStyle = {
     overlay: {
@@ -29,8 +30,9 @@ function Menu({ isOpen, onRequestClose, onClick }) {
       left: 0,
       right: 0,
       bottom: 0,
-      //   minWidth: `${isSmallScreen ? "60%" : "40%"}`,
-      maxWidth: `${isSmallScreen ? "100%" : "40%"}`,
+      maxWidth: `${
+        isSmallScreen ? "100%" : isMediumScreen ? "480px" : "600px"
+      }`,
       border: "1px solid #ccc",
       background: "#fff",
       overflow: "auto",
@@ -58,7 +60,7 @@ function Menu({ isOpen, onRequestClose, onClick }) {
             <div className="self-end pr-[20px]" onClick={onClick}>
               <GrClose fontSize="large" />
             </div>
-            <div className="mx-4.75 pt-8 pl-16 pr-16">
+            <div className="mx-8 pt-8 pl-16 pr-16">
               <div className="w-full flex flex-row justify-between">
                 <input
                   className="border-0 outline-0 w-full"
@@ -91,7 +93,7 @@ function Menu({ isOpen, onRequestClose, onClick }) {
           </div>
 
           <div className="flex flex-col">
-            <div className="flex flex-row justify-start mx-4.75 pl-16 py-4 gap-3 text-xl">
+            <div className="flex flex-row justify-start mx-8 pl-16 py-4 gap-3 text-xl">
               <div className="hover:text-sky-500 hover:cursor-pointer">
                 <BsTwitter />
               </div>
@@ -106,7 +108,7 @@ function Menu({ isOpen, onRequestClose, onClick }) {
               </div>
             </div>
             <div className="flex flex-row justify-between bg-zinc-200 py-5 hover:text-sky-500 hover:cursor-pointer">
-              <div className="flex flex-row justify-start gap-3 mx-4.75 pl-16 left-0 right-0 ">
+              <div className="flex flex-row justify-start gap-3 mx-8 pl-16 left-0 right-0 ">
                 <div className="pt-0.25 text-2xl">
                   <BiWorld />
                 </div>
