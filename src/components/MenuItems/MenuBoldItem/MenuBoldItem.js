@@ -3,9 +3,12 @@ import { MdArrowForwardIos } from "react-icons/md";
 
 const MenuBoldItem = (props) => {
   return (
-    <div className="flex flex-row justify-between font-bold text-xl mx-8 py-3 hover:text-sky-500 hover:cursor-pointer">
+    <div
+      className="flex flex-row justify-between font-bold text-[22px] mx-8 py-[8px] text-darkFontColor hover:text-turquoise hover:cursor-pointer font-TradeGothicLTStdUltraBold"
+      onClick={props.onClick}
+    >
       <div>{props.name}</div>
-      <div className="pt-1 text-sky-500">
+      <div className=" text-turquoise">
         <MdArrowForwardIos />
       </div>
     </div>

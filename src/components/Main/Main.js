@@ -9,7 +9,7 @@ const Main = () => {
   return (
     <div className="flex flex-col content-center self-auto py-6 pl-6 bg-slate-500">
       <div>
-        <div onClick={handleOpen}>
+        <div className="hover:cursor-pointer" onClick={handleOpen}>
           <FaAlignLeft fontSize="1.5rem" color="#D8D7D7"></FaAlignLeft>
         </div>
       </div>

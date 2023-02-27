@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* @font-face {
+  font-family: "tradeGothicLTStdRegular";
+  src: url("../src/fonts/TradeGothicLTStdRegular.otf");
+}
+@font-face {
+  font-family: "tradeGothicLTStdBold";
+  src: url("../src/fonts/TradeGothicLTStdBold.otf");
+}
+@font-face {
+  font-family: "tradeGothicLTStdUltraBold";
+  src: url("../src/fonts/TradeGothicLTStdBoldNo2.otf");
+} */
+
+@layer base {
+  @font-face {
+    font-family: '"TradeGothicLTStdRegular"';
+    src: url("../src/fonts/TradeGothicLTStdRegular.otf") format("otf");
+  }
+  @font-face {
+    font-family: '"TradeGothicLTStdBold"';
+    src: url("../src/fonts/TradeGothicLTStdBold.otf") format("otf");
+  }
+  @font-face {
+    font-family: '"TradeGothicLTStdUltraBold"';
+    src: url("../src/fonts/TradeGothicLTStdBoldNo2.otf") format("otf");
+  }
+}

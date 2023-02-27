@@ -18,7 +18,17 @@ module.exports = {
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        TradeGothicLTStdRegular: ['"TradeGothicLTStdRegular"'],
+        TradeGothicLTStdBold: ['"TradeGothicLTStdBold"'],
+        TradeGothicLTStdUltraBold: ['"TradeGothicLTStdUltraBold"'],
+      },
+    },
+    colors: {
+      turquoise: "#00CFD7",
+      darkFontColor: "#333333",
+    },
   },
   plugins: [],
 };

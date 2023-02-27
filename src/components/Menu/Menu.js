@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 import ReactModal from "react-modal";
 import { GrClose } from "react-icons/gr";
 import "./Menu.css";
-import "../MenuItems/menuItemsList";
-import { menuItemsList } from "../MenuItems/menuItemsList";
+import { menuItemsList } from "../../data/menuItemsList";
+import BackButton from "../BackButton/BackButton";
+import SearchInput from "../SearchInput/SearchInput";
 import MenuBoldItem from "../MenuItems/MenuBoldItem/MenuBoldItem";
 import MenuNormalItem from "../MenuItems/MenuNormalItem/MenuNormalItem";
-import { BsSearch, BsTwitter, BsInstagram } from "react-icons/bs";
-import { FaLinkedinIn, FaFacebookF } from "react-icons/fa";
 import { MdArrowForwardIos } from "react-icons/md";
 import { BiWorld } from "react-icons/bi";
 import { useMediaQuery } from "react-responsive";
+import SocialNetworks from "../SocialNetworks/SocialNetworks";
+import { BsCheck2 } from "react-icons/bs";
 
-function Menu({ isOpen, onRequestClose, onClick }) {
+const Menu = ({ isOpen, onRequestClose, onClick }) => {
   const isSmallScreen = useMediaQuery({ maxWidth: 640 });
   const isMediumScreen = useMediaQuery({ minWidth: 641, maxWidth: 1023 });
+  const [menuItems, setMenuItems] = useState(menuItemsList);
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
+  const [language, setLanguage] = useState("Deutsch");
+
+  console.log("Da li je language menu otvoren?", isLanguageMenuOpen);
+
+  const ref = useRef();
+
+  useOnClickOutside(ref, () => setIsLanguageMenuOpen(false));
 
   const modalStyle = {
     overlay: {
@@ -55,74 +66,110 @@ function Menu({ isOpen, onRequestClose, onClick }) {
         closeTimeoutMS={500}
         ariaHideApp={false}
       >
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col justify-between h-full font-TradeGothicLTStdRegular">
           <div className="flex flex-col justify-start w-full">
-            <div className="self-end pr-[20px]" onClick={onClick}>
+            <div
+              className="self-end pr-[20px] hover:cursor-pointer"
+              onClick={onClick}
+            >
               <GrClose fontSize="large" />
             </div>
-            <div className="mx-8 pt-8 pl-16 pr-16">
-              <div className="w-full flex flex-row justify-between">
-                <input
-                  className="border-0 outline-0 w-full"
-                  placeholder="Search"
-                  bordered="false"
-                />
-                <div className="pr-1.5">
-                  <BsSearch />
-                </div>
+            {menuItems === menuItemsList ? (
+              <div className="mx-8 pt-8 pl-16 pr-16">
+                <SearchInput />
               </div>
-              <hr />
-            </div>
+            ) : (
+              <div className="mx-8 pt-8 pl-12 pr-16">
+                <BackButton onClick={() => setMenuItems(menuItemsList)} />
+              </div>
+            )}
             <div className="pt-14 pl-16 pr-16">
-              {menuItemsList.map((item) => {
+              {menuItems.map((item) => {
                 return item.multiLevel ? (
                   <MenuBoldItem
                     name={item.name}
                     multiLevel={item.multiLevel}
                     key={item.name}
+                    onClick={() => setMenuItems(item.submenuFirstLevel)}
                   />
                 ) : (
                   <MenuNormalItem
                     name={item.name}
                     multiLevel={item.multiLevel}
                     key={item.name}
+                    submenuSecondLevel={item.submenuSecondLevel}
                   />
                 );
               })}
             </div>
           </div>
-
-          <div className="flex flex-col">
-            <div className="flex flex-row justify-start mx-8 pl-16 py-4 gap-3 text-xl">
-              <div className="hover:text-sky-500 hover:cursor-pointer">
-                <BsTwitter />
-              </div>
-              <div className="hover:text-sky-500 hover:cursor-pointer">
-                <FaLinkedinIn />
-              </div>
-              <div className="hover:text-sky-500 hover:cursor-pointer">
-                <BsInstagram />
-              </div>
-              <div className="hover:text-sky-500 hover:cursor-pointer">
-                <FaFacebookF />
-              </div>
-            </div>
-            <div className="flex flex-row justify-between bg-zinc-200 py-5 hover:text-sky-500 hover:cursor-pointer">
-              <div className="flex flex-row justify-start gap-3 mx-8 pl-16 left-0 right-0 ">
-                <div className="pt-0.25 text-2xl">
-                  <BiWorld />
+          {menuItems === menuItemsList ? (
+            <div ref={ref} className="flex flex-col">
+              {!isLanguageMenuOpen ? (
+                <SocialNetworks />
+              ) : (
+                <div className="flex flex-col pl-16 py-5 bg-[#F9F9F9]">
+                  {/* {props.language === 'english' ? } */}
+                  <div
+                    className="flex flex-row justify-start left-2 py-2 mx-8 hover:text-turquoise hover:cursor-pointer"
+                    onClick={() => setLanguage("Deutsch")}
+                  >
+                    <div className="flex items-center pt-1 pl-1 pr-3.5 gap-3">
+                      {language === "Deutsch" ? <BsCheck2 /> : ""}
+                    </div>
+                    <div
+                      className={
+                        language !== "Deutsch"
+                          ? `pl-4 font-thin`
+                          : `font-semibold`
+                      }
+                    >
+                      Deutsch
+                    </div>
+                  </div>
+                  <div
+                    className="flex flex-row justify-start py-2 mx-8 hover:text-turquoise hover:cursor-pointer"
+                    onClick={() => setLanguage("English")}
+                  >
+                    <div className="flex items-center pt-1 pl-1 pr-3.5 gap-3">
+                      {language === "English" ? <BsCheck2 /> : ""}
+                    </div>
+                    <div
+                      className={
+                        language !== "English"
+                          ? `pl-4 font-thin`
+                          : `font-semibold`
+                      }
+                    >
+                      English
+                    </div>
+                  </div>
                 </div>
-                <span className="">Deutsch</span>
-              </div>
-              <div className="pt-1 pr-16 font-bold text-xl text-sky-500">
-                <MdArrowForwardIos />
+              )}
+              <div className="flex flex-col bg-[#F9F9F9]">
+                <div
+                  className="flex flex-row justify-between bg-[#F3F3F3] py-5 text-darkFontColor hover:text-turquoise hover:cursor-pointer"
+                  onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+                >
+                  <div className="flex flex-row justify-start gap-3 mx-8 pl-16 left-0 right-0 ">
+                    <div className="pt-0.25 text-2xl">
+                      <BiWorld />
+                    </div>
+                    <span className="">{language}</span>
+                  </div>
+                  <div className="pr-16 pt-0.5 font-bold text-xl text-turquoise">
+                    <MdArrowForwardIos />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            ""
+          )}
         </div>
       </ReactModal>
     </div>
   );
-}
+};
 
 export default Menu;
