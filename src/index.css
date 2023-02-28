@@ -16,7 +16,7 @@
 } */
 
 @layer base {
-  @font-face {
+  /* @font-face {
     font-family: '"TradeGothicLTStdRegular"';
     src: url("../src/fonts/TradeGothicLTStdRegular.otf") format("otf");
   }
@@ -27,5 +27,21 @@
   @font-face {
     font-family: '"TradeGothicLTStdUltraBold"';
     src: url("../src/fonts/TradeGothicLTStdBoldNo2.otf") format("otf");
+  } */
+  @font-face {
+    font-family: '"Trade Gothic LT Std Bold Condensed No 20"';
+    src: url("../src/fonts/TradeGothicLTStd-BdCn20.otf") format("otf");
+  }
+  @font-face {
+    font-family: '"Trade Gothic LT Std Bold Condensed No 18"';
+    src: url("../src/fonts/TradeGothicLTCondensedNo18.otf") format("otf");
+  }
+  @font-face {
+    font-family: '"Trade Gothic LT Std Bold No2"';
+    src: url("../src/fonts/TradeGothicLTStd-Bd2.otf") format("otf");
+  }
+  @font-face {
+    font-family: '"Trade Gothic LT Std Regular"';
+    src: url("../src/fonts/TradeGothicLTStd.otf") format("otf");
   }
 }

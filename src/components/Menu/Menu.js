@@ -21,8 +21,6 @@ const Menu = ({ isOpen, onRequestClose, onClick }) => {
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [language, setLanguage] = useState("Deutsch");
 
-  console.log("Da li je language menu otvoren?", isLanguageMenuOpen);
-
   const ref = useRef();
 
   useOnClickOutside(ref, () => setIsLanguageMenuOpen(false));
@@ -108,8 +106,7 @@ const Menu = ({ isOpen, onRequestClose, onClick }) => {
               {!isLanguageMenuOpen ? (
                 <SocialNetworks />
               ) : (
-                <div className="flex flex-col pl-16 py-5 bg-[#F9F9F9]">
-                  {/* {props.language === 'english' ? } */}
+                <div className="flex flex-col pl-16 py-5 bg-[#F9F9F9] font-TradeGothicLTStdRegular">
                   <div
                     className="flex flex-row justify-start left-2 py-2 mx-8 hover:text-turquoise hover:cursor-pointer"
                     onClick={() => setLanguage("Deutsch")}
@@ -155,7 +152,9 @@ const Menu = ({ isOpen, onRequestClose, onClick }) => {
                     <div className="pt-0.25 text-2xl">
                       <BiWorld />
                     </div>
-                    <span className="">{language}</span>
+                    <span className="font-TradeGothicLTStdRegular">
+                      {language}
+                    </span>
                   </div>
                   <div className="pr-16 pt-0.5 font-bold text-xl text-turquoise">
                     <MdArrowForwardIos />

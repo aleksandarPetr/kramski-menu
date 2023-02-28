@@ -6,7 +6,7 @@ const SearchInput = () => {
     <div>
       <div className="w-full flex flex-row justify-between">
         <input
-          className="border-0 outline-0 w-full"
+          className="border-0 outline-0 w-full font-TradeGothicLTStdRegular"
           placeholder="Suche"
           bordered="false"
         />

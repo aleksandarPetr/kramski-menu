@@ -20,9 +20,10 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        TradeGothicLTStdRegular: ['"TradeGothicLTStdRegular"'],
-        TradeGothicLTStdBold: ['"TradeGothicLTStdBold"'],
-        TradeGothicLTStdUltraBold: ['"TradeGothicLTStdUltraBold"'],
+        TradeGothicLTStdRegular: ["Trade Gothic LT Std Bold Condensed No 20"],
+        TradeGothicLTStdSemiBold: ["Trade Gothic LT Std Bold Condensed No 18"],
+        TradeGothicLTStdBold: ["Trade Gothic LT Std Bold Condensed No 20"],
+        TradeGothicLTStdMedium: ["Trade Gothic LT Std Bold No2"],
       },
     },
     colors: {
